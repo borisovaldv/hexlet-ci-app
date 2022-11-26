@@ -1,4 +1,4 @@
-# [![Build Status](https://github.com/borisovaldv/hexlet-ci-app/actions/workflows/main.yml/badge.svg)](https://github.com/borisovaldv/hexlet-ci-app/actions/workflows/main.yml)
+![ci-app-app workflow](https://github.com/borisovaldv/hexlet-ci-app/actions/workflows/ci-app-app.yml/badge.svg)
 
 # Example app for CI Hexlet course
 
