@@ -2,14 +2,26 @@ name: hexlet-cli-workflow
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: ["18"]
+        npm-version: ["6.x"]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-          cache: npm
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
       - run: make setup
       - run: make test
       - run: make lint
